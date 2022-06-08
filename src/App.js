@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useReducer} from 'react'
+import './App.css'
+import CompA from './context/CompA'
+import CompB from './context/CompB'
+import CompC from './context/CompC'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const CountContext = React.createContext()
+
+const initialState = 0
+ 
+const reducer = (state, action) => {
+
+    switch (action) {
+        case "increment":
+            return state + 1
+        case "decrement":
+            return state - 1
+        case "reset":
+            return initialState
+        default:
+            return state
+    }
 }
 
-export default App;
+function App() {
+
+const CountProvider = CountContext.Provider
+
+  const [count, dispatch] = useReducer(reducer, initialState)
+
+  return (
+    <CountProvider value={{countFromContext: count, dispatchFromContext: dispatch}}>
+    <div>
+      count {count}
+      <CompA/>
+    </div>
+    </CountProvider>
+  )
+}
+
+export default App
