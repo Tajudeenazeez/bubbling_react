@@ -1,12 +1,13 @@
 import React from 'react'
 import './App.css'
-import StateFetch from './statefetch/StateFetch'
-
+// import ReturnMemoizFunc from './useCb/ReturnMemoizFunc'
+import ParentComp from './useCb/ParentComp'
 function App() {
 
   return (
-    <div>
-     <StateFetch/>
+    <div style={{textAlign: 'center', margin: '10px'}}>
+      {/* <ReturnMemoizFunc/> */}
+      <ParentComp/>
     </div>
   )
 }
